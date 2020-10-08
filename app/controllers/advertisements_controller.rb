@@ -1,5 +1,7 @@
 class AdvertisementsController < ApplicationController
-  before_action :set_advertisement, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :set_advertisement, only: [:show, :edit, :update, :destroy,
+    :add, :cancel, :approve, :publish, :archive]
 
   def new
     @advertisement = Advertisement.new
@@ -19,36 +21,57 @@ class AdvertisementsController < ApplicationController
   def create
     @advertisement = Advertisement.new(advertisement_params)
     @advertisement.user_id = current_user.id
-
-    respond_to do |format|
-      if @advertisement.save
-        format.html { redirect_to @advertisement, notice: 'Advertisement was successfully created.' }
-        format.json { render :show, status: :created, location: @advertisement }
-      else
-        format.html { render :new }
-        format.json { render json: @advertisement.errors, status: :unprocessable_entity }
-      end
+    if @advertisement.save
+      redirect_to advertisements_path,
+      notice: 'Advertisement was successfully created as draft.'
+    else
+      render 'new'
     end
   end
 
   def update
-    respond_to do |format|
-      if @advertisement.update(advertisement_params)
-        format.html { redirect_to @advertisement, notice: 'Advertisement was successfully updated.' }
-        format.json { render :show, status: :ok, location: @advertisement }
-      else
-        format.html { render :edit }
-        format.json { render json: @advertisement.errors, status: :unprocessable_entity }
-      end
+    if @advertisement.update(advertisement_params.except(:advertisement_id))
+      redirect_to advertisements_path,
+      notice: 'Advertisement was successfully updated.'
+    else
+      render 'edit'
     end
   end
 
   def destroy
     @advertisement.destroy
-    respond_to do |format|
-      format.html { redirect_to advertisements_url, notice: 'Advertisement was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to advertisements_path,
+    notice: 'Advertisement was successfully destroyed.'
+  end
+
+  def add
+    @advertisement.update(state: 1)
+    redirect_to advertisements_path,
+    notice: 'Advertisement was successfully added.'
+  end
+
+  def cancel
+    @advertisement.update(state: 2)
+    redirect_to advertisements_path,
+    notice: 'Advertisement was successfully canceled.'
+  end
+
+  def approve
+    @advertisement.update(state: 3)
+    redirect_to advertisements_path,
+    notice: 'Advertisement was successfully approved.'
+  end
+
+  def publish
+    @advertisement.update(state: 4)
+    redirect_to advertisements_path,
+    notice: 'Advertisement was successfully published.'
+  end
+
+  def archive
+    @advertisement.update(state: 5)
+    redirect_to advertisements_path,
+    notice: 'Advertisement was successfully archived.'
   end
 
   private

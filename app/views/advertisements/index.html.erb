@@ -14,9 +14,15 @@
     <% @advertisements.each do |advertisement| %>
       <tr>
         <td><%= advertisement.content %></td>
+        <td><%= advertisement.state %></td>
+        <td><%= link_to 'Add', add_advertisement_path(advertisement),
+          method: :patch %></td>
+        <td><%= link_to 'Pablish', publish_advertisement_path(advertisement),
+          method: :patch %></td>
         <td><%= link_to 'Show', advertisement %></td>
         <td><%= link_to 'Edit', edit_advertisement_path(advertisement) %></td>
-        <td><%= link_to 'Destroy', advertisement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', advertisement,
+          method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

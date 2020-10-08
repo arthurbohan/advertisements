@@ -1,6 +1,15 @@
 Rails.application.routes.draw do
   root 'home#index'
-  resources :advertisements
   devise_for :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  resources :advertisements do
+    member do
+      patch 'add'
+      patch 'cancel'
+      patch 'approve'
+      patch 'publish'
+      patch 'archive'
+    end
+  end
+
 end
