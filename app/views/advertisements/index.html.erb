@@ -15,19 +15,66 @@
       <tr>
         <td><%= advertisement.content %></td>
         <td><%= advertisement.state %></td>
-        <td><%= link_to 'Add', add_advertisement_path(advertisement),
-          method: :patch %></td>
-        <td><%= link_to 'Pablish', publish_advertisement_path(advertisement),
-          method: :patch %></td>
+
+        <td><%if can? :add, advertisement %>
+          <%if advertisement.draft? %>
+           <%= link_to 'Add', add_advertisement_path(advertisement),
+           method: :patch %>
+          <% end %>
+         <% end %>
+        </td>
+
+        <td><%if can? :approve, advertisement %>
+          <%if advertisement.added? %>
+           <%= link_to 'Approve' , approve_advertisement_path(advertisement),
+           method: :patch %>
+          <% end %>
+         <% end %>
+        </td>
+
+        <td><%if can? :cancel, advertisement %>
+          <%if advertisement.added? || advertisement.approved? %>
+           <%= link_to 'Cancel' , cancel_advertisement_path(advertisement),
+           method: :patch %>
+           <% end %>
+         <% end %>
+        </td>
+
+        <td><%if can? :publish, advertisement %>
+          <% if advertisement.approved? %>
+           <%= link_to 'Pablish', publish_advertisement_path(advertisement),
+          method: :patch %>
+          <% end %>
+         <% end %>
+        </td>
+
+        <td><%if can? :archive, advertisement %>
+          <% if advertisement.published? %>
+            <%= link_to 'Archive', archive_advertisement_path(advertisement),
+            method: :patch %>
+          <% end %>
+         <% end %>
+        </td>
+
         <td><%= link_to 'Show', advertisement %></td>
-        <td><%= link_to 'Edit', edit_advertisement_path(advertisement) %></td>
-        <td><%= link_to 'Destroy', advertisement,
-          method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+        <td><% if can? :update, advertisement %>
+          <%= link_to 'Edit', edit_advertisement_path(advertisement) %>
+         <% end %>
+        </td>
+
+        <td><% if can? :destroy, advertisement %>
+          <%= link_to 'Destroy', advertisement,
+          method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+       </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Advertisement', new_advertisement_path %>
+ <div><%if current_user.user? %>
+   <%= link_to 'New Advertisement', new_advertisement_path %>
+      <% end %>
+ </div>
