@@ -8,7 +8,11 @@ class AdvertisementsController < ApplicationController
   end
 
   def index
-    @advertisements = Advertisement.all
+    if current_user.admin?
+      @advertisements = Advertisement.all
+    else
+      @advertisements = Advertisement.all.where(user: current_user).sort_by(&:id)
+    end
   end
 
   def show
