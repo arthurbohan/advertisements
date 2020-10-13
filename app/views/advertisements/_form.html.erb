@@ -1,5 +1,26 @@
-<%= simple_form_for @advertisement do |advertisement| %>
-    <%= advertisement.input :title %>
-    <%= advertisement.input :content %>
-    <%= advertisement.button :submit %>
-<% end %>
+<div class="row-fluid">
+  <div class="span4 well">
+    <%= simple_form_for @advertisement, :html => {:class => "form-horizontal"} do |a| %>
+        <fieldset>
+          <legend>Advertisement</legend>
+          <div class="control-group">
+            <%= a.label :title, :class => "control-label" %>
+            <div class="controls">
+              <%= a.text_field :title, :class => "input-xlarge" %>
+            </div>
+          </div>
+          <br>
+          <div class="control-group">
+            <%= a.label :content, :class => "control-label" %>
+            <div class="controls">
+              <%= a.text_area :content, :class => "input-xlarge" %>
+            </div>
+          </div>
+          <br>
+          <div class="form-actions">
+            <%= a.submit :class => "btn btn-primary" %>
+          </div>
+        </fieldset>
+    <% end %>
+  </div>
+</div>
