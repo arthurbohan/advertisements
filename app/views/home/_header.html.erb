@@ -1,0 +1,11 @@
+<nav class="navbar navbar-light bg-light">
+  <form class="form-inline">
+    <button class="btn btn-outline-success" type="button"><%= link_to "Advertisements", root_path %></button>
+      <% if user_signed_in? %>
+       Welcome, <%= current_user.email %>
+       <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+      <% else %>
+       <%= link_to "Sign in", new_user_session_path %>
+      <% end %>
+  </form>
+</nav>

@@ -1,12 +1,17 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Title:</strong>
+  <%= @advertisement.title %>
+</p>
+
+<p>
   <strong>Content:</strong>
   <%= @advertisement.content %>
 </p>
 
- <% if can? :update, @advertisement %>
-<%= link_to 'Edit', edit_advertisement_path(@advertisement) %> |
-<% end %>
-
-<%= link_to 'Back', advertisements_path %>
+<br>
+  <% if can? :update, @advertisement %>
+  <a><%= link_to 'Edit', edit_advertisement_path(@advertisement), class: 'btn btn-primary btn-lg active' %></a>
+  <% end %>
+<a href="/advertisements" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Back</a>
