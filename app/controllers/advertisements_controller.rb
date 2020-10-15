@@ -80,15 +80,10 @@ class AdvertisementsController < ApplicationController
 
   private
     def set_advertisement
-      advertisement = Advertisement.find(params[:id])
-      if advertisement.user == current_user
-        @advertisement = advertisement
-      else
-        redirect_to advertisements_path, notice: 'Advertisemnt no access.'
-      end
+      @advertisement = Advertisement.find(params[:id])
     end
 
     def advertisement_params
-      params.require(:advertisement).permit(:title, :content)
+      params.require(:advertisement).permit(:title, :body)
     end
 end

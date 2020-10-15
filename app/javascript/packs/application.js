@@ -14,6 +14,12 @@ require("channels")
 // or the `imagePath` JavaScript helper below.
 //
 //= require jquery
+//= require jquery_ujs
 //= require bootstrap-sprockets
+//= require turbolinks
+//= require_tree 
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+require("trix")
+require("@rails/actiontext")

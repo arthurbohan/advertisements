@@ -8,13 +8,10 @@
             <div class="controls">
               <%= a.text_field :title, :class => "input-xlarge" %>
             </div>
-          </div>
           <br>
-          <div class="control-group">
-            <%= a.label :content, :class => "control-label" %>
-            <div class="controls">
-              <%= a.text_area :content, :class => "input-xlarge" %>
-            </div>
+          <div class="field">
+            <%= a.label :body %>
+            <%= a.rich_text_area :body %>
           </div>
           <br>
           <div class="form-actions">

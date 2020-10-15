@@ -1,7 +1,20 @@
-<%= link_to 'Add advertisement', advertisements_path %>
-<div class = "container">
-  <% @advertisements.each do |advertisement| %>
-   <p><%= advertisement.title %></p>
-   <p><%= advertisement.content %></p>
-  <% end %>
+<div>
+ <%= link_to 'Create advertisement', advertisements_path,
+  class: 'btn btn-primary btn-lg active' %>
+</div>
+<br>
+<div class="row-fluid">
+    <% @advertisements.each do |a| %>
+        <fieldset>
+          <div class="span4 well">
+           <div class= "field">
+             <strong><%= a.title %></strong>
+           </div>
+           <br>
+           <div class="field">
+            <%= a.body %>
+           </div>
+          </div>
+        </fieldset>
+    <% end %>
 </div>
