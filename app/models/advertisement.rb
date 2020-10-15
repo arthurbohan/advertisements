@@ -4,4 +4,5 @@ class Advertisement < ApplicationRecord
                :approved, :published, :archived]
 
   belongs_to :user
+  paginates_per 5
 end
