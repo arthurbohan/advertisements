@@ -73,9 +73,9 @@ class AdvertisementsController < ApplicationController
   end
 
   def archive
-    @advertisement.update(state: 5)
-    redirect_to advertisements_path,
-    notice: 'Advertisement was successfully archived.'
+      @advertisement.update(state: "draft")
+      redirect_to advertisements_path,
+      notice: 'Advertisement was successfully archived.'
   end
 
   private
