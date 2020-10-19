@@ -1,11 +1,19 @@
-<nav class="navbar navbar-light bg-light">
-  <form class="form-inline">
-    <button class="btn btn-outline-success" type="button"><%= link_to "Advertisements", root_path %></button>
-      <% if user_signed_in? %>
-       Welcome, <%= current_user.email %>
-       <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+
+<nav class="navbar fixed-bottom navbar-light bg-light" style="background-color: #70AB8F">
+  <form class="container">
+      <a class="navbar-brand" href="/"
+      style="color: black; font-size: xx-large;">Advertisements</a>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav mr-auto">
+    <% if user_signed_in? %>
+    <Li style="color: black; font-size: large;  padding: 12px;"><%= t '.logged' %> <strong><%= current_user.email %> </strong></Li>
+      <li class='nav-item' ><%= link_to "Edit profile", edit_user_registration_path %></li>
+      <li class='nav-item' ><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
       <% else %>
-       <%= link_to "Sign in", new_user_session_path %>
+       <li class='nav-item'><%= link_to "Sign in", new_user_session_path %></li>
       <% end %>
+  </ul>
+</div>
   </form>
 </nav>
