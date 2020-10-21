@@ -1,19 +1,18 @@
 <div class="row-fluid">
   <div class="span4 well">
-    <%= simple_form_for @advertisement, :html => {:class => "form-horizontal"} do |a| %>
-        <fieldset>
-          <legend>Advertisement</legend>
-          <div class="control-group">
+    <%= simple_form_for @advertisement do |a| %>
+      <fieldset>
+        <legend>Advertisement</legend>
+          <div class="field">
             <%= a.label :title, :class => "control-label" %>
-            <div class="controls">
-              <%= a.text_field :title, :class => "input-xlarge" %>
-            </div>
-          <br>
+            <%= a.text_field :title, :class => "input-xlarge" %>
+          </div>
+        <br>
           <div class="field">
             <%= a.label :body %>
             <%= a.rich_text_area :body %>
           </div>
-          <br>
+        <br>
           <div class="form-actions">
             <%= a.submit :class => "btn btn-primary" %>
           </div>
