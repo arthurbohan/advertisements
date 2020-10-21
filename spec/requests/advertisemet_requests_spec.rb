@@ -20,8 +20,9 @@ RSpec.describe 'Advertisement', type: :request do
       expect(response).to render_template(:new)
 
       post '/advertisements', params: { advertisement: {
-                                         name: advertisement.name,
-                                         user: advertisement.user } }
+        name: advertisement.name,
+        user: advertisement.user
+      } }
 
       expect(response).to have_http_status(:found)
 

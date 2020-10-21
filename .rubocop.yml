@@ -1,0 +1,44 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+
+AllCops:
+  TargetRubyVersion: 2.7.0
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'spec/factories/**/*'
+    - 'bin/**/*'
+    - 'lib/tasks/**/*'
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/models/*.rb'
+
+RSpec/MultipleExpectations:
+  Max: 2
+RSpec/ExampleLength:
+  Enabled: false
+Metrics/BlockLength:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/Encoding:
+  Enabled: false
+Style/LambdaCall:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/SymbolArray:
+  Enabled: false
+Style/EmptyMethod:
+  Enabled: false
+Naming/AccessorMethodName:
+  Enabled: false
+RSpec/EmptyExampleGroup:
+  Enabled: false
+Layout/LineLength:
+  Max: 120

@@ -1,23 +1,22 @@
 class AdvertisementsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_advertisement, only: [:show, :edit, :update, :destroy,
-    :add, :cancel, :approve, :publish, :archive]
+                                           :add, :cancel, :approve, :publish, :archive]
 
   def new
     @advertisement = Advertisement.new
   end
 
   def index
-    if current_user.admin?
-      @advertisements = Advertisement.all
-    else
-      @advertisements = Advertisement.all.where(user: current_user).sort_by(&:id)
-    end
+    @advertisements = if current_user.admin?
+                        Advertisement.all
+                      else
+                        Advertisement.all.where(user: current_user).sort_by(&:id)
+                      end
   end
 
   def show
   end
-
 
   def edit
   end
@@ -27,7 +26,7 @@ class AdvertisementsController < ApplicationController
     @advertisement.user_id = current_user.id
     if @advertisement.save
       redirect_to advertisements_path,
-      notice: 'Advertisement was successfully created as draft.'
+                  notice: 'Advertisement was successfully created as draft.'
     else
       render 'new'
     end
@@ -36,7 +35,7 @@ class AdvertisementsController < ApplicationController
   def update
     if @advertisement.update(advertisement_params.except(:advertisement_id))
       redirect_to advertisements_path,
-      notice: 'Advertisement was successfully updated.'
+                  notice: 'Advertisement was successfully updated.'
     else
       render 'edit'
     end
@@ -45,45 +44,46 @@ class AdvertisementsController < ApplicationController
   def destroy
     @advertisement.destroy
     redirect_to advertisements_path,
-    notice: 'Advertisement was successfully destroyed.'
+                notice: 'Advertisement was successfully destroyed.'
   end
 
   def add
     @advertisement.update(state: 1)
     redirect_to advertisements_path,
-    notice: 'Advertisement was successfully added.'
+                notice: 'Advertisement was successfully added.'
   end
 
   def cancel
     @advertisement.update(state: 2)
     redirect_to advertisements_path,
-    notice: 'Advertisement was successfully canceled.'
+                notice: 'Advertisement was successfully canceled.'
   end
 
   def approve
     @advertisement.update(state: 3)
     redirect_to advertisements_path,
-    notice: 'Advertisement was successfully approved.'
+                notice: 'Advertisement was successfully approved.'
   end
 
   def publish
     @advertisement.update(state: 4)
     redirect_to advertisements_path,
-    notice: 'Advertisement was successfully published.'
+                notice: 'Advertisement was successfully published.'
   end
 
   def archive
-      @advertisement.update(state: "draft")
-      redirect_to advertisements_path,
-      notice: 'Advertisement was successfully archived.'
+    @advertisement.update(state: 'draft')
+    redirect_to advertisements_path,
+                notice: 'Advertisement was successfully archived.'
   end
 
   private
-    def set_advertisement
-      @advertisement = Advertisement.find(params[:id])
-    end
 
-    def advertisement_params
-      params.require(:advertisement).permit(:name, :body)
-    end
+  def set_advertisement
+    @advertisement = Advertisement.find(params[:id])
+  end
+
+  def advertisement_params
+    params.require(:advertisement).permit(:name, :body)
+  end
 end
