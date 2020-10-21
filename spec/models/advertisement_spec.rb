@@ -9,12 +9,12 @@ RSpec.describe Advertisement, type: :model do
     end
 
     it 'is not valid without a title' do
-      advertisement.title = ''
+      advertisement.name = ''
       expect(advertisement).not_to be_valid
     end
 
     it 'is not valid without too much symbols' do
-      advertisement.title = "a" * 257
+      advertisement.name = "a" * 257
       expect(advertisement).not_to be_valid
     end
 
@@ -26,7 +26,7 @@ RSpec.describe Advertisement, type: :model do
   end
 
   describe 'validations' do
-    it { is_expected.to  validate_presence_of(:title) }
-    it { is_expected.to  validate_length_of(:title).is_at_most(256) }
+    it { is_expected.to  validate_presence_of(:name) }
+    it { is_expected.to  validate_length_of(:name).is_at_most(256) }
   end
 end
