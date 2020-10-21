@@ -26,11 +26,11 @@ Advertisement.delete_all
 Advertisement.create([
   {
     user_id: User.last.id,
-    title: 'First advertisement',
+    name: 'First advertisement',
   },
   {
     user_id: User.last.id,
-    title: 'Second advertisement',
+    name: 'Second advertisement',
   }
   ])
 

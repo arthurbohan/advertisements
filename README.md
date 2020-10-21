@@ -15,12 +15,12 @@ approved advertisement will auto published at 12:00 am.
 
 * Ruby 2.7.0
 * Rails 6.0.3
-* Sqlite
+* PostgreSQL
 
-## Gems
+## Stranger Things
 
-* devise
-* rspec
-* bootstrap
-* action-text
-* kaminari
+While developing the application, there was a problem in creating
+an advertising model, namely the title column. As soon as I didn't try
+to debug, but I couldn't see the text area in the view in any way.
+It turned out that adblock was blocking the "title" keyword and
+I had to change all the title fields on the name;)

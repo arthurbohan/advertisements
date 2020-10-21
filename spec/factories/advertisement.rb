@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :advertisement do
-    title { 'Hello, world!' }
+    name { 'Hello, world!' }
     body { 'Hello, world!' }
     user { create :user }
   end
