@@ -14,11 +14,9 @@ RSpec.describe Advertisement, type: :model do
     end
 
     it 'is not valid without too much symbols' do
-      advertisement.name = "a" * 257
+      advertisement.name = 'a' * 257
       expect(advertisement).not_to be_valid
     end
-
-
   end
 
   describe 'associations' do
