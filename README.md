@@ -11,6 +11,10 @@ when it has state draft and add advertisement.
 approved advertisement will auto published at 12:00 am.
 5. Only published advertisements show on home page.
 
+## Heroku
+
+That all you can do here https://ads-by.herokuapp.com/
+
 ## Stack
 
 * Ruby 2.7.0
